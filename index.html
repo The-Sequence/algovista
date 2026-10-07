@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algovista — Legacy Windows on Apple Silicon</title>
+<meta name="description" content="Algovista builds GPU-accelerated virtualization tooling that brings Windows 7 and Vista, with Aero glass, to Apple Silicon Macs.">
+<style>
+  :root{--bg:#0b0f1a;--fg:#e8ecf5;--muted:#9aa4bd;--card:#131a2b;--line:#222c45;--accent:#6ea8ff}
+  @media (prefers-color-scheme: light){:root{--bg:#f7f8fc;--fg:#10152a;--muted:#55607d;--card:#fff;--line:#dfe3f0;--accent:#2f6df6}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px}
+  header{padding:20px 0;display:flex;justify-content:space-between;align-items:center}
+  .logo{font-weight:700;letter-spacing:.3px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .hero{padding:64px 0 40px}
+  h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;margin:0 0 16px}
+  .lead{color:var(--muted);font-size:1.15rem;max-width:640px}
+  .btn{display:inline-block;margin:24px 12px 0 0;padding:12px 20px;border-radius:10px;background:var(--accent);color:#fff;font-weight:600}
+  .btn.alt{background:transparent;border:1px solid var(--line);color:var(--fg)}
+  .btn:hover{text-decoration:none;opacity:.9}
+  section{padding:32px 0}
+  h2{font-size:1.5rem;margin:0 0 16px}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .card h3{margin:0 0 6px;font-size:1.05rem}
+  .card p{margin:0;color:var(--muted);font-size:.95rem}
+  .stack span{display:inline-block;margin:0 8px 8px 0;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:.9rem}
+  ul{color:var(--muted);padding-left:20px}
+  footer{border-top:1px solid var(--line);margin-top:32px;padding:24px 0 40px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">Algovista</div>
+    <a href="https://github.com/The-Sequence/aero-on-apple-silicon">GitHub</a>
+  </header>
+
+  <div class="hero">
+    <h1>Legacy Windows, back on modern Macs.</h1>
+    <p class="lead">Algovista builds GPU-accelerated virtualization tooling that runs Windows 7 and Vista, with working Aero glass, on Apple Silicon Macs, and we're extending the same approach to OS X Mavericks.</p>
+    <a class="btn" href="https://github.com/The-Sequence/aero-on-apple-silicon">View the project</a>
+    <a class="btn alt" href="#contact">Get in touch</a>
+  </div>
+
+  <section>
+    <h2>What we've built</h2>
+    <div class="grid">
+      <div class="card"><h3>Aero glass</h3><p>Transparency and Flip 3D rendering in full color inside the guest.</p></div>
+      <div class="card"><h3>GPU-accelerated Direct3D 9</h3><p>Graphics commands are translated to the Mac's native GPU.</p></div>
+      <div class="card"><h3>Quality-of-life features</h3><p>Dynamic resizing, clipboard sharing and multi-core guests without VMware Tools.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">A patched QEMU emulates a VMware SVGA3D graphics device. Direct3D calls go through DXVK to Vulkan, then through MoltenVK to Apple's Metal.</p>
+    <div class="stack"><span>QEMU</span><span>VMware SVGA3D</span><span>DXVK</span><span>MoltenVK</span><span>Metal</span></div>
+  </section>
+
+  <section>
+    <h2>In progress: OS X Mavericks on Apple Silicon</h2>
+    <p style="color:var(--muted)">We're applying the same approach to a second guest, OS X 10.9 Mavericks. Instead of writing a new guest driver, we emulate a graphics card that Apple already shipped a driver for (an ATI Radeon) and translate its command stream to Metal on the Mac. This is experimental and still has known rendering bugs.</p>
+    <div class="grid">
+      <div class="card"><h3>Working</h3><p>Boots to the desktop under QEMU on Apple Silicon, with the emulated Radeon as the only display, a hardware cursor, and Finder windows rendering.</p></div>
+      <div class="card"><h3>Performance</h3><p>GPU work runs on its own thread, plus a fast path for plain copies. Boot is faster now that display-clock and vblank waits are emulated.</p></div>
+      <div class="card"><h3>Fixed along the way</h3><p>Bit-exact depth clears, mipmapped textures, anti-aliased shapes and icons, and the gamma-table hang when switching resolution.</p></div>
+      <div class="card"><h3>Still broken</h3><p>Striped garbage during window animations, some missing Dock icons, and textures in some apps (for example Chess).</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Built with Claude</h2>
+    <p style="color:var(--muted)">Claude is our primary engineering partner. We use it to write and refactor emulator and graphics-translation code, and to debug low-level issues across QEMU, Vulkan and Metal. We provide direction, testing and review.</p>
+  </section>
+
+  <section>
+    <h2>Where we're headed</h2>
+    <ul>
+      <li>Get Quartz Extreme and Core Image working in the Mavericks guest</li>
+      <li>Fix freezing at high resolutions caused by frame copying</li>
+      <li>Explore DirectX 10/11 support</li>
+      <li>Improve performance in graphics-heavy workloads</li>
+      <li>Package the project for easier installation</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p style="color:var(--muted)">Reach us through <a href="https://github.com/The-Sequence/aero-on-apple-silicon/issues">GitHub issues</a>.</p>
+  </section>
+
+  <footer>
+    © 2026 Algovista · Philippines. Windows is a trademark of Microsoft Corporation. Algovista is not affiliated with or endorsed by Microsoft, Apple or VMware.
+  </footer>
+</div>
+</body>
+</html>
