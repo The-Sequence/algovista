@@ -34,6 +34,10 @@
   .stack span{display:inline-block;margin:0 8px 8px 0;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:.9rem}
   ul{color:var(--muted);padding-left:20px}
   footer{border-top:1px solid var(--line);margin-top:32px;padding:24px 0 40px;color:var(--muted);font-size:.85rem}
+  .shots{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .shots figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .shots img{display:block;width:100%;height:auto}
+  .shots figcaption{padding:10px 14px;color:var(--muted);font-size:.9rem}
 </style>
 </head>
 <body>
@@ -49,6 +53,16 @@
     <a class="btn" href="https://github.com/The-Sequence/aero-on-apple-silicon">View the project</a>
     <a class="btn alt" href="#contact">Get in touch</a>
   </div>
+
+  <section>
+    <h2>See it running</h2>
+    <div class="shots">
+      <figure><img src="media/hero-win7-wei.jpg" alt="Windows 7 Enterprise with a Windows Experience Index of 6.0, next to About This Mac showing an Apple M4 Pro" loading="lazy"><figcaption>Windows 7 with a Windows Experience Index of 6.0 on an M4 Pro Mac.</figcaption></figure>
+      <figure><img src="media/hero-vista-wei.jpg" alt="Windows Vista Ultimate with Aero glass and a Windows Experience Index of 5.2, next to About This Mac showing an Apple M4 Pro" loading="lazy"><figcaption>Windows Vista Ultimate with Aero glass on the same Mac.</figcaption></figure>
+      <figure><img src="media/win7-aero.jpg" alt="The Windows 7 Aero desktop with Start menu and Task Manager" loading="lazy"><figcaption>Aero glass and DWM running like a normal Windows 7 desktop.</figcaption></figure>
+      <figure><img src="media/07-aero-colour.jpg" alt="Windows Photo Viewer with correct Aero glass" loading="lazy"><figcaption>Correct glass and transparency around a Direct3D app.</figcaption></figure>
+    </div>
+  </section>
 
   <section>
     <h2>Why this matters</h2>
