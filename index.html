@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Algovista — Legacy Windows on Apple Silicon</title>
 <meta name="description" content="Algovista builds GPU-accelerated virtualization tooling that brings Windows 7 and Vista, with Aero glass, to Apple Silicon Macs.">
+<meta property="og:title" content="Algovista — Legacy Windows on Apple Silicon">
+<meta property="og:description" content="GPU-accelerated virtualization tooling that brings Windows 7 and Vista, with Aero glass, to Apple Silicon Macs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://algovista.dev/">
 <style>
   :root{--bg:#0b0f1a;--fg:#e8ecf5;--muted:#9aa4bd;--card:#131a2b;--line:#222c45;--accent:#6ea8ff}
   @media (prefers-color-scheme: light){:root{--bg:#f7f8fc;--fg:#10152a;--muted:#55607d;--card:#fff;--line:#dfe3f0;--accent:#2f6df6}}
@@ -47,11 +51,26 @@
   </div>
 
   <section>
+    <h2>Why this matters</h2>
+    <p style="color:var(--muted)">Apple Silicon Macs can't run x86 Windows natively, and most virtual machines on them either skip 3D acceleration for older Windows or lack it entirely. That leaves legacy software, classic games and preservation work without a good option. We're building the missing graphics layer so older Windows feels like a real desktop on a modern Mac, not a slideshow.</p>
+  </section>
+
+  <section>
     <h2>What we've built</h2>
     <div class="grid">
       <div class="card"><h3>Aero glass</h3><p>Transparency and Flip 3D rendering in full color inside the guest.</p></div>
       <div class="card"><h3>GPU-accelerated Direct3D 9</h3><p>Graphics commands are translated to the Mac's native GPU.</p></div>
       <div class="card"><h3>Quality-of-life features</h3><p>Dynamic resizing, clipboard sharing and multi-core guests without VMware Tools.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Current status</h2>
+    <p style="color:var(--muted)">Early and honest: it works, and it has limits.</p>
+    <div class="grid">
+      <div class="card"><h3>What works</h3><p>Aero glass and Flip 3D, Direct3D 9 on the Mac GPU, Windows Experience Index scores of 5.9–6.0, and support for M1 through M4.</p></div>
+      <div class="card"><h3>Known limits</h3><p>The x86 CPU is still emulated, so CPU-heavy work is slow. Frame copying can freeze the display at high resolutions. DirectX 10/11 is not supported.</p></div>
+      <div class="card"><h3>Benchmarks</h3><p>3DMark06 runs slowly, around 9–27 fps, so heavy 3D workloads are not the target yet.</p></div>
     </div>
   </section>
 
@@ -86,6 +105,16 @@
       <li>Improve performance in graphics-heavy workloads</li>
       <li>Package the project for easier installation</li>
     </ul>
+  </section>
+
+  <section>
+    <h2>FAQ</h2>
+    <div class="grid">
+      <div class="card"><h3>Do I need a Windows license?</h3><p>Yes. You bring your own installation media and license. We don't distribute Microsoft or Apple software.</p></div>
+      <div class="card"><h3>Is it open source?</h3><p>The code is public on GitHub. See the repository for its license and build instructions.</p></div>
+      <div class="card"><h3>Which Macs does it support?</h3><p>Apple Silicon Macs: M1, M2, M3 and M4.</p></div>
+      <div class="card"><h3>Who is behind it?</h3><p>Algovista is an early-stage, unincorporated project led by Aenard Ollyer Royo in the Philippines.</p></div>
+    </div>
   </section>
 
   <section id="contact">
