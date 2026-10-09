@@ -38,6 +38,8 @@
   .shots figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
   .shots img{display:block;width:100%;height:auto}
   .shots figcaption{padding:10px 14px;color:var(--muted);font-size:.9rem}
+  .demo video{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#000}
+  .demo p{margin:10px 0 0;color:var(--muted);font-size:.9rem}
 </style>
 </head>
 <body>
@@ -53,6 +55,14 @@
     <a class="btn" href="https://github.com/The-Sequence/aero-on-apple-silicon">View the project</a>
     <a class="btn alt" href="#contact">Get in touch</a>
   </div>
+
+  <section class="demo">
+    <h2>Watch the demo</h2>
+    <video controls playsinline preload="metadata" poster="media/aero-demo-poster.jpg">
+      <source src="media/aero-demo.mp4" type="video/mp4">
+    </video>
+    <p>Real recording on an Apple M4 Pro MacBook Pro. Slow parts are sped up and marked.</p>
+  </section>
 
   <section>
     <h2>See it running</h2>
